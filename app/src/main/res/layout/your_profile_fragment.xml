@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="179dp"
+        android:layout_height="215dp"
+        android:id="@+id/avatar_image"/>
+
+    <TextView
+        android:id="@+id/first_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="250dp"
+        tools:layout_editor_absoluteY="80dp" />
+
+    <TextView
+        android:id="@+id/last_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="261dp"
+        tools:layout_editor_absoluteY="137dp" />
+
+    <TextView
+        android:id="@+id/about_me"
+        android:layout_width="127dp"
+        android:layout_height="49dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="220dp"
+        tools:layout_editor_absoluteY="199dp" />
+
+    <TextView
+        android:id="@+id/fovorites_count"
+        android:layout_width="333dp"
+        android:layout_height="219dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="23dp"
+        tools:layout_editor_absoluteY="276dp" />
+
+</android.support.constraint.ConstraintLayout>
