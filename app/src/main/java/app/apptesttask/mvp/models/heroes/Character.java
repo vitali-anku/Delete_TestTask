@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.Date;
 import java.util.List;
 
-class Character {
+public class Character {
     @SerializedName("id")
     int id;
     @SerializedName("name")

@@ -7,6 +7,10 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import app.apptesttask.mvp.models.heroes.Character;
+import app.apptesttask.mvp.models.heroes.Image;
 import app.apptesttask.mvp.presenter.HeroesListTabFragmentPresenter;
 import app.apptesttask.mvp.view.HeroesListTabFragmentView;
 
@@ -16,7 +20,11 @@ public class HeroesListTabFragment extends MvpAppCompatFragment implements Heroe
     @InjectPresenter
     HeroesListTabFragmentPresenter heroesListPresenter;
 
+    @Inject
+    Character character;
 
+    @Inject
+    Image image;
 
     @Override
     public void onRefresh() {

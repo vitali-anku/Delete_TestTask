@@ -1,20 +1,16 @@
 package app.apptesttask.app;
 
-import java.util.List;
-
 import app.apptesttask.mvp.models.heroes.CharacterDataWrapper;
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.Query;
-import rx.Observable;
 
 public interface MarvelApi {
 
     @GET("/v1/public/characters")
     @Headers("Content-Type: application/json")
-    Observable<CharacterDataWrapper> getHeroes(@Query("ts") int fs, @Query("keyapi") String publicKey, @Query("hash") String hash);
+    Call<CharacterDataWrapper> getHeroesList(@Query("ts") int fs, @Query("keyapi") String publicKey, @Query("hash") String hash);
 
 //    @GET("/user")
 //    Single<User> signIn(@Header("Authorization") String token);

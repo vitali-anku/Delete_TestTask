@@ -12,7 +12,7 @@ public class MarvelService {
     }
 
     public Call<CharacterDataWrapper> getHeroesList(int ts, String publicKey, String hash){
-        return mMarvelApi.getHeroes(ts, publicKey, hash);
+        return mMarvelApi.getHeroesList(ts, publicKey, hash);
     }
 
 //    public Observable<User> signIn(String token){

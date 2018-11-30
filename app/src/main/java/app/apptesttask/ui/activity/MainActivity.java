@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 
 import app.apptesttask.R;
+import app.apptesttask.mvp.models.heroes.Character;
 import app.apptesttask.mvp.presenter.MainActivityPresenter;
 import app.apptesttask.mvp.view.MainActivityView;
 import app.apptesttask.ui.fragments.HeroesListTabFragment;

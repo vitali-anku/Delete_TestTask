@@ -2,7 +2,7 @@ package app.apptesttask.mvp.models.heroes;
 
 import com.google.gson.annotations.SerializedName;
 
-class Image {
+public class Image {
     @SerializedName("path")
     String path;
     @SerializedName("extension")
@@ -26,9 +26,6 @@ class Image {
 
     @Override
     public String toString() {
-        return "Image{" +
-                "path='" + path + '\'' +
-                ", extension='" + extension + '\'' +
-                '}';
+        return getPath() + "." + getExtension();
     }
 }
