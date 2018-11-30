@@ -2,7 +2,7 @@ package app.apptesttask.mvp.models.heroes;
 
 import com.google.gson.annotations.SerializedName;
 
-public class CharacterDataWrapper {
+public class CharacterDataWrapper implements  {
     @SerializedName("code")
     String code;
     @SerializedName("status")

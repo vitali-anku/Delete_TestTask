@@ -8,6 +8,7 @@ import app.apptesttask.di.modules.ContextModule;
 import app.apptesttask.di.modules.HeroesModule;
 import app.apptesttask.di.modules.ModelModule;
 import app.apptesttask.mvp.presenter.FavoritesListTabFragmentPresenter;
+import app.apptesttask.mvp.presenter.HeroesListAdapterPresenter;
 import app.apptesttask.mvp.presenter.HeroesListTabFragmentPresenter;
 import app.apptesttask.mvp.presenter.MainActivityPresenter;
 import app.apptesttask.mvp.presenter.YourProfileTabFragmentPresenter;
@@ -26,4 +27,5 @@ public interface AppComponent {
 
     void inject(FavoritesListTabFragmentPresenter favoritesListTabFragmentPresenter);
 
+    void inject(HeroesListAdapterPresenter heroesListAdapterPresenter);
 }
