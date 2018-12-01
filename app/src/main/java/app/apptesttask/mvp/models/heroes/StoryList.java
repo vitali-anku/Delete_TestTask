@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-class StoryList {
+public class StoryList {
     @SerializedName("available")
     int available;
     @SerializedName("returned")

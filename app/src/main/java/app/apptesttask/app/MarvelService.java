@@ -1,21 +1,17 @@
 package app.apptesttask.app;
 
 import app.apptesttask.mvp.models.heroes.CharacterDataWrapper;
-import retrofit2.Call;
+import io.reactivex.Single;
 
 public class MarvelService {
 
-    private MarvelApi mMarvelApi;
+    private MarvelApi marvelApi;
 
-    public MarvelService(MarvelApi mMarvelApi) {
-        this.mMarvelApi = mMarvelApi;
+    public MarvelService(MarvelApi mApi) {
+        marvelApi = mApi;
     }
 
-    public Call<CharacterDataWrapper> getHeroesList(int ts, String publicKey, String hash){
-        return mMarvelApi.getHeroesList(ts, publicKey, hash);
+    public Single<CharacterDataWrapper> getHeroesList(int ts, String publicKey, String hash){
+        return marvelApi.getHeroesList(ts, publicKey, hash);
     }
-
-//    public Observable<User> signIn(String token){
-//        return mMarvelApi.signIn(token);
-//    }
 }

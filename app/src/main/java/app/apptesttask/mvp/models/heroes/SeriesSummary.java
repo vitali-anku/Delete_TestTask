@@ -2,7 +2,7 @@ package app.apptesttask.mvp.models.heroes;
 
 import com.google.gson.annotations.SerializedName;
 
-class SeriesSummary {
+public class SeriesSummary {
     @SerializedName("resourceURI")
     String resourceURI;
     @SerializedName("name")

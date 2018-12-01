@@ -1,15 +1,18 @@
 package app.apptesttask.di.modules;
 
+import javax.inject.Singleton;
+
 import app.apptesttask.app.MarvelApi;
 import app.apptesttask.app.MarvelService;
 import dagger.Module;
 import dagger.Provides;
 
 @Module(includes = {ApiModule.class})
-public class HeroesModule {
+public class MarvelModule {
 
     @Provides
-    MarvelService provideGithubService(MarvelApi authApi){
-        return new MarvelService(authApi);
+    @Singleton
+    MarvelService provideMarvelService(MarvelApi marvelApi){
+        return new MarvelService(marvelApi);
     }
 }

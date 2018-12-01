@@ -52,12 +52,20 @@ public class HeroesListTabFragment extends MvpAppCompatFragment implements Heroe
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-
+        initSwipeRefreshLayout();
     }
 
     @Override
     public void onRefresh() {
 
+    }
+
+    private void initSwipeRefreshLayout() {
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
+                android.R.color.holo_green_dark,
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_dark);
     }
 
     @Override
@@ -71,13 +79,13 @@ public class HeroesListTabFragment extends MvpAppCompatFragment implements Heroe
     }
 
     @Override
-    public void showHeroesList(List<Character> heroes, List<Image> images, boolean clear) {
-        mAdapter.setItemsList(heroes, images, clear);
+    public void showHeroesList(List<Character> characters) {
+        mAdapter.setItemsList(characters);
     }
 
     @Override
-    public void showMessage(int messResId) {
-        Toast.makeText(getContext(), messResId, Toast.LENGTH_SHORT).show();
+    public void showError(String errorMsg) {
+        Toast.makeText(getContext(), errorMsg, Toast.LENGTH_SHORT).show();
     }
 
     @Override

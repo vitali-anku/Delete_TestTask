@@ -11,7 +11,7 @@ import retrofit2.Retrofit;
 public class ApiModule {
     @Provides
     @Singleton
-    public MarvelApi provideGithubApi(Retrofit retrofit){
+    public MarvelApi provideMarvelApi(Retrofit retrofit){
         return retrofit.create(MarvelApi.class);
     }
 }

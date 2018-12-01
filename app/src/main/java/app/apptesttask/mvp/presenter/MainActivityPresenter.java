@@ -13,12 +13,4 @@ public class MainActivityPresenter extends MvpPresenter<MainActivityView> {
     public MainActivityPresenter() {
         MyApplication.getAppComponent().inject(this);
     }
-
-//    public void onRepositorySelection(int position, Character character) {
-//        getViewState().showDetailsContainer();
-//
-//        getViewState().setSelection(position);
-//
-//        getViewState().showDetails(position, character);
-//    }
 }
