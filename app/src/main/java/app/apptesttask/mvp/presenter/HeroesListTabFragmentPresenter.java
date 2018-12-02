@@ -14,7 +14,6 @@ import app.apptesttask.mvp.view.HeroesListTabFragmentView;
 import app.apptesttask.util.Constants;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import rx.Subscription;
 
 @InjectViewState
 public class HeroesListTabFragmentPresenter extends BasePresenter<HeroesListTabFragmentView> {
@@ -33,22 +32,24 @@ public class HeroesListTabFragmentPresenter extends BasePresenter<HeroesListTabF
     }
 
     private void loadHeroesList() {
-
-        unsubscribeOnDestroy(
-                (Subscription) (marvelService.getHeroesList(Constants.TS, Constants.PUBLIC_KEY, Constants.HASH))
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .doOnSubscribe(disposable -> getViewState().showProgress())
-                        .subscribe(characterDataWrapper -> {
-                                    List<Character> characters = new ArrayList<>(characterDataWrapper.getData().getResults());
-                                    onLoading(characters);
-                                }
-                                , this::onLoadingFailed));
+        unsubscribeOnDestroy(marvelService.getHeroesList(String.valueOf(Constants.TS), Constants.PUBLIC_KEY, Constants.HASH)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(disposable -> showProgress())
+                .subscribe(characterDataWrapper -> {
+                            List<Character> characters = new ArrayList<>(characterDataWrapper.getData().getResults());
+                            onLoading(characters);
+                            hideProgress();
+                        },
+                        error -> {
+                            onLoadingFailed(error);
+                            hideProgress();
+                        })
+        );
     }
 
-    private void onLoading(List<Character> characterList){
-        getViewState().showHeroesList(characterList);
-        hideProgress();
+    private void onLoading(List<Character> characters){
+          getViewState().showHeroesList(characters);
     }
 
     private void hideProgress(){
@@ -57,5 +58,13 @@ public class HeroesListTabFragmentPresenter extends BasePresenter<HeroesListTabF
 
     private void onLoadingFailed(Throwable error){
         getViewState().showError(error.toString());
+    }
+
+    private void showProgress(){
+        getViewState().showProgress();
+    }
+
+    public void refreshCalled() {
+        loadHeroesList();
     }
 }

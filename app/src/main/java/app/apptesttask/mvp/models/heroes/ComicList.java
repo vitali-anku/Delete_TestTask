@@ -1,18 +1,23 @@
 package app.apptesttask.mvp.models.heroes;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class ComicList {
     @SerializedName("available")
-    int available;
+    @Expose
+    private Integer available;
     @SerializedName("returned")
-    int returned;
+    @Expose
+    private Integer returned;
     @SerializedName("collectionURI")
-    String collectionURI;
+    @Expose
+    private String collectionURI;
     @SerializedName("items")
-    List<ComicSummary> items;
+    @Expose
+    private List<ComicSummary> items;
 
     @Override
     public String toString() {
@@ -24,7 +29,7 @@ public class ComicList {
                 '}';
     }
 
-    public int getAvailable() {
+    public Integer getAvailable() {
         return available;
     }
 
@@ -32,14 +37,13 @@ public class ComicList {
         this.available = available;
     }
 
-    public int getReturned() {
+    public Integer getReturned() {
         return returned;
     }
 
     public void setReturned(int returned) {
         this.returned = returned;
     }
-
     public String getCollectionURI() {
         return collectionURI;
     }

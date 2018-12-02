@@ -1,12 +1,15 @@
 package app.apptesttask.mvp.models.heroes;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Image {
     @SerializedName("path")
-    String path;
+    @Expose
+    private String path;
     @SerializedName("extension")
-    String extension;
+    @Expose
+    private String extension;
 
     public String getPath() {
         return path;

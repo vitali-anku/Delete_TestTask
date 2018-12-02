@@ -4,6 +4,7 @@ import javax.inject.Singleton;
 
 import app.apptesttask.app.MarvelApi;
 import app.apptesttask.mvp.models.heroes.Character;
+import app.apptesttask.mvp.models.heroes.CharacterDataContainer;
 import app.apptesttask.mvp.models.heroes.CharacterDataWrapper;
 import app.apptesttask.mvp.models.heroes.Image;
 import dagger.Module;
@@ -22,6 +23,13 @@ public class ModelModule {
     public CharacterDataWrapper provideCharactersData(MarvelApi marvelApi){
         return new CharacterDataWrapper();
     }
+
+    @Provides
+    @Singleton
+    public CharacterDataContainer provideContainer(MarvelApi marvelApi){
+        return new CharacterDataContainer();
+    }
+
 
     @Provides
     @Singleton

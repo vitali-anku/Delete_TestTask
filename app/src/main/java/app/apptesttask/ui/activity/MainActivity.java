@@ -12,11 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 
 import app.apptesttask.R;
-import app.apptesttask.mvp.models.heroes.Character;
 import app.apptesttask.mvp.presenter.MainActivityPresenter;
 import app.apptesttask.mvp.view.MainActivityView;
-import app.apptesttask.ui.fragments.HeroesListTabFragment;
 import app.apptesttask.ui.fragments.FavoritesListTabFragment;
+import app.apptesttask.ui.fragments.HeroesListTabFragment;
 import app.apptesttask.ui.fragments.YourProfileTabFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
         private static final int YOUR_PROFILE_TAB = 2;
         private int mTabsCount;
 
-        public PageAdapter(FragmentManager fm, int tabsCount) {
+        PageAdapter(FragmentManager fm, int tabsCount) {
             super(fm);
             this.mTabsCount = tabsCount;
         }

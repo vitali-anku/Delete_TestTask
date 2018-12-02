@@ -1,5 +1,6 @@
 package app.apptesttask.mvp.models.heroes;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
@@ -7,29 +8,40 @@ import java.util.List;
 
 public class Character {
     @SerializedName("id")
-    int id;
+    @Expose
+    private Integer id;
     @SerializedName("name")
-    String name;
+    @Expose
+    private String name;
     @SerializedName("description")
-    String description;
+    @Expose
+    private String description;
     @SerializedName("modified")
-    Date modified;
+    @Expose
+    private Date modified;
     @SerializedName("resourceURI")
-    String resourceURI;
+    @Expose
+    private String resourceURI;
     @SerializedName("urls")
-    List<Url> urls;
+    @Expose
+    private List<Url> urls;
     @SerializedName("thumbnail")
-    Image thumbnail;
+    @Expose
+    private Image thumbnail;
     @SerializedName("comics")
-    ComicList comics;
+    @Expose
+    private ComicList comics;
     @SerializedName("stories")
-    StoryList stories;
+    @Expose
+    private StoryList stories;
     @SerializedName("events")
-    EventList events;
+    @Expose
+    private EventList events;
     @SerializedName("series")
-    SeriesList series;
+    @Expose
+    private SeriesList series;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

@@ -1,12 +1,15 @@
 package app.apptesttask.mvp.models.heroes;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Url {
     @SerializedName("type")
-    String type;
+    @Expose
+    private String type;
     @SerializedName("url")
-    String url;
+    @Expose
+    private String url;
 
     public String getType() {
         return type;

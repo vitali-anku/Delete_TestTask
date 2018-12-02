@@ -13,9 +13,8 @@ import dagger.Module;
 import dagger.Provides;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.schedulers.Schedulers;
 
 @Module
 public class RetrofitModule {
@@ -29,7 +28,7 @@ public class RetrofitModule {
     @Singleton
     public Retrofit.Builder provideRetrofitBuilder(Converter.Factory converterFactory) {
         return new Retrofit.Builder()
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.createWithScheduler(Schedulers.io()))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(converterFactory);
     }
 

@@ -1,14 +1,18 @@
 package app.apptesttask.mvp.models.heroes;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class StorySummary {
-    @SerializedName("resourceURI ")
-    String resourceURI;
+    @SerializedName("resourceURI")
+    @Expose
+    private String resourceURI;
     @SerializedName("name")
-    String name;
+    @Expose
+    private String name;
     @SerializedName("type")
-    String type;
+    @Expose
+    private String type;
 
     public String getResourceURI() {
         return resourceURI;

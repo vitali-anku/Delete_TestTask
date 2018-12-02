@@ -1,7 +1,7 @@
 package app.apptesttask.app;
 
 import app.apptesttask.mvp.models.heroes.CharacterDataWrapper;
-import io.reactivex.Single;
+import io.reactivex.Observable;
 
 public class MarvelService {
 
@@ -11,7 +11,7 @@ public class MarvelService {
         marvelApi = mApi;
     }
 
-    public Single<CharacterDataWrapper> getHeroesList(int ts, String publicKey, String hash){
+    public Observable<CharacterDataWrapper> getHeroesList(String ts, String publicKey, String hash){
         return marvelApi.getHeroesList(ts, publicKey, hash);
     }
 }

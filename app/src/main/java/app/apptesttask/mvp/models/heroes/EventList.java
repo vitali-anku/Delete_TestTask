@@ -1,20 +1,25 @@
 package app.apptesttask.mvp.models.heroes;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class EventList {
     @SerializedName("available")
-    int available;
+    @Expose
+    private Integer available;
     @SerializedName("returned")
-    int returned;
+    @Expose
+    private Integer returned;
     @SerializedName("collectionURI")
-    String collectionURI;
+    @Expose
+    private String collectionURI;
     @SerializedName("items")
-    List<EventSummary> items;
+    @Expose
+    private List<EventSummary> items;
 
-    public int getAvailable() {
+    public Integer getAvailable() {
         return available;
     }
 
@@ -22,7 +27,7 @@ public class EventList {
         this.available = available;
     }
 
-    public int getReturned() {
+    public Integer getReturned() {
         return returned;
     }
 

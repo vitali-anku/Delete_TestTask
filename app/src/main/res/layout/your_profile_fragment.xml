@@ -14,7 +14,6 @@
         android:id="@+id/first_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
         tools:layout_editor_absoluteX="250dp"
         tools:layout_editor_absoluteY="80dp" />
 
@@ -22,7 +21,6 @@
         android:id="@+id/last_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
         tools:layout_editor_absoluteX="261dp"
         tools:layout_editor_absoluteY="137dp" />
 
@@ -30,7 +28,6 @@
         android:id="@+id/about_me"
         android:layout_width="127dp"
         android:layout_height="49dp"
-        android:text="TextView"
         tools:layout_editor_absoluteX="220dp"
         tools:layout_editor_absoluteY="199dp" />
 
@@ -38,7 +35,6 @@
         android:id="@+id/fovorites_count"
         android:layout_width="333dp"
         android:layout_height="219dp"
-        android:text="TextView"
         tools:layout_editor_absoluteX="23dp"
         tools:layout_editor_absoluteY="276dp" />
 

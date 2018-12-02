@@ -1,22 +1,28 @@
 package app.apptesttask.mvp.models.heroes;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class CharacterDataContainer {
     @SerializedName("offset")
-    int offset;
+    @Expose
+    private Integer offset;
     @SerializedName("limit")
-    int limit;
+    @Expose
+    private Integer limit;
     @SerializedName("total")
-    int total;
+    @Expose
+    private Integer total;
     @SerializedName("count")
-    int count;
+    @Expose
+    private Integer count;
     @SerializedName("results")
-    List<Character> results;
+    @Expose
+    private List<Character> results;
 
-    public int getOffset() {
+    public Integer getOffset() {
         return offset;
     }
 
@@ -24,7 +30,7 @@ public class CharacterDataContainer {
         this.offset = offset;
     }
 
-    public int getLimit() {
+    public Integer getLimit() {
         return limit;
     }
 
@@ -32,7 +38,7 @@ public class CharacterDataContainer {
         this.limit = limit;
     }
 
-    public int getTotal() {
+    public Integer getTotal() {
         return total;
     }
 
@@ -40,7 +46,7 @@ public class CharacterDataContainer {
         this.total = total;
     }
 
-    public int getCount() {
+    public Integer getCount() {
         return count;
     }
 

@@ -6,31 +6,31 @@ import com.google.gson.annotations.SerializedName;
 public class CharacterDataWrapper {
     @SerializedName("code")
     @Expose
-    String code;
+    private Integer code;
     @SerializedName("status")
     @Expose
-    String status;
+    private String status;
     @SerializedName("copyright")
     @Expose
-    String copyright;
+    private String copyright;
     @SerializedName("attributionText")
     @Expose
-    String attributionText;
+    private String attributionText;
     @SerializedName("attributionHTML")
     @Expose
-    String attributionHTML;
+    private String attributionHTML;
     @SerializedName("data")
     @Expose
-    CharacterDataContainer data;
+    private CharacterDataContainer data;
     @SerializedName("etag")
     @Expose
-    String etag;
+    private String etag;
 
-    public String getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
