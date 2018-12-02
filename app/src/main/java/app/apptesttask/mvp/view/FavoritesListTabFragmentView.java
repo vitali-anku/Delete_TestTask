@@ -7,15 +7,17 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 
 import java.util.List;
 
+import app.apptesttask.mvp.models.heroes.Character;
+
 public interface FavoritesListTabFragmentView extends MvpView {
     @StateStrategyType(AddToEndStrategy.class)
     void showProgress();
     @StateStrategyType(AddToEndStrategy.class)
     void hideProgress();
     @StateStrategyType(AddToEndStrategy.class)
-    void showFavoritesList(List<?> heroes, boolean clear);
+    void showFavoritesList(List<Character> heroes);
     @StateStrategyType(SkipStrategy.class)
-    void showMessage(int messResId);
+    void showMessage(Throwable throwable);
     @StateStrategyType(SkipStrategy.class)
     void clearList();
 

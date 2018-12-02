@@ -4,7 +4,6 @@ import android.content.Context;
 
 import javax.inject.Singleton;
 
-import app.apptesttask.app.MarvelService;
 import app.apptesttask.di.modules.ContextModule;
 import app.apptesttask.di.modules.MarvelModule;
 import app.apptesttask.di.modules.ModelModule;

@@ -6,11 +6,5 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 
 public interface YourProfileTabFragmentView extends MvpView {
     @StateStrategyType(AddToEndStrategy.class)
-    void showUserData(Class<?> clas, boolean visible);
-
-    @StateStrategyType(AddToEndStrategy.class)
-    void showLayoutProfile();
-
-//    @StateStrategyType(AddToEndStrategy.class)
-
+    void showUserData(String urlImage, String firstName, String lastName, String aboutMe);
 }

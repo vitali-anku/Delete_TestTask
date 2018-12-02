@@ -28,8 +28,9 @@ import butterknife.ButterKnife;
 
 import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
 
-public class HeroesListTabFragment extends MvpAppCompatFragment implements HeroesListTabFragmentView, SwipeRefreshLayout.OnRefreshListener
-{
+public class HeroesListTabFragment extends MvpAppCompatFragment implements HeroesListTabFragmentView,
+        SwipeRefreshLayout.OnRefreshListener {
+
     @InjectPresenter
     HeroesListTabFragmentPresenter heroesListPresenter;
 
@@ -44,9 +45,8 @@ public class HeroesListTabFragment extends MvpAppCompatFragment implements Heroe
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_heroes_list, container, false);
 
-        return view;
+        return inflater.inflate(R.layout.fragment_heroes_list, container, false);
     }
 
     @Override
@@ -83,7 +83,7 @@ public class HeroesListTabFragment extends MvpAppCompatFragment implements Heroe
 
     @Override
     public void showHeroesList(List<Character> characters) {
-        mAdapter.setItemsList(characters, false);
+        mAdapter.setItemsList(characters, true);
     }
 
     @Override
