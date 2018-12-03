@@ -11,7 +11,9 @@ public class Constants {
     public final static String PUBLIC_KEY = "5502dd19b20bb1840f20fcfad2a2dfcb";
     public final static int TS = 50;
 
-    public final static String FILENAME = "varvel.json";
+    public final static String LIKES_ID = "likes_id";
+
+    public final static String FILENAME = "varvel.txt";
 
     public static String hashTomd5() throws NoSuchAlgorithmException {
 

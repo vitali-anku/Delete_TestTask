@@ -1,5 +1,7 @@
 package app.apptesttask.mvp.presenter;
 
+import android.content.Context;
+import android.util.Log;
 import android.view.View;
 
 import com.arellomobile.mvp.InjectViewState;
@@ -8,6 +10,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +30,6 @@ import io.reactivex.schedulers.Schedulers;
 @InjectViewState
 public class FavoritesListTabFragmentPresenter extends BasePresenter<FavoritesListTabFragmentView> {
 
-    private final static String LIKES_ID = "likes_id";
-
     @Inject
     MarvelService marvelService;
 
@@ -35,10 +38,15 @@ public class FavoritesListTabFragmentPresenter extends BasePresenter<FavoritesLi
     }
 
     @Override
+    protected void onFirstViewAttach() {
+        super.onFirstViewAttach();
+        loadFavoritesList();
+    }
+
+    @Override
     public void attachView(FavoritesListTabFragmentView view) {
         super.attachView(view);
         getViewState().clearList();
-        loadFavoritesList();
     }
 
     @Override
@@ -46,12 +54,6 @@ public class FavoritesListTabFragmentPresenter extends BasePresenter<FavoritesLi
         super.detachView(view);
         getViewState().clearList();
     }
-
-//    @Override
-//    protected void onFirstViewAttach() {
-//        super.onFirstViewAttach();
-//        loadFavoritesList();
-//    }
 
     private void loadFavoritesList(){
         unsubscribeOnDestroy(marvelService.getHeroesList(String.valueOf(Constants.TS), Constants.PUBLIC_KEY, Constants.HASH)
@@ -84,6 +86,14 @@ public class FavoritesListTabFragmentPresenter extends BasePresenter<FavoritesLi
         return charactersList;
     }
 
+    private void hideProgress(){
+        getViewState().hideProgress();
+    }
+
+    public void refreshCalled(){
+        loadFavoritesList();
+    }
+
     private boolean chekJsonFile(){
 
 
@@ -92,56 +102,38 @@ public class FavoritesListTabFragmentPresenter extends BasePresenter<FavoritesLi
     }
 
     private void openFile(View view){
-
     }
 
-    public String writeFile(){
-        return null;
-    }
-
-    private void readFile(){
-    }
-
-    public List<Integer> convertToClass(JSONObject jsonObject) {
-
-        List<Integer> integers = new ArrayList<>();
-
+    public void writeFile(View view){
+        Context context = view.getContext();
         try {
-            //String teacherFromJson = schoolClassFromJson.getString("teacher");
+            // отрываем поток для записи
+            BufferedWriter bw = new BufferedWriter(
+                    new OutputStreamWriter(context.openFileOutput(Constants.FILENAME, Context.MODE_PRIVATE)));
+            // пишем данные
+            bw.write(convertToJson(LocalData.mLikesId));
+            // закрываем поток
+            bw.close();
 
-            JSONArray jsonArray = jsonObject.getJSONArray(LIKES_ID);
-
-            for (int i = 0; i<jsonArray.length(); i++){
-                integers.add(jsonArray.getInt(i));
-                LocalData.mLikesId.add(jsonArray.getInt(i));
-            }
-        } catch (JSONException e) {
+            Log.d("myLogsWrite", "Файл записан");
+        } catch (IOException e) {
             getViewState().showMessage(e);
         }
-        return integers;
     }
 
-    public JSONObject convertToJson(){
+    private String convertToJson(List<Integer> likesList){
         JSONObject jsonObject = new JSONObject();
         JSONArray jsonArray = new JSONArray();
 
         try{
-
-            for (int i: LocalData.mLikesId) {
+            for (int i: likesList) {
                 jsonArray.put(i);
             }
 
-            jsonObject.put(LIKES_ID, jsonArray);
-        } catch (JSONException ignored){}
-        return jsonObject;
-    }
-
-
-    private void hideProgress(){
-        getViewState().hideProgress();
-    }
-
-    public void refreshCalled(){
-        loadFavoritesList();
+            jsonObject.put(Constants.LIKES_ID, jsonArray);
+        } catch (JSONException e){
+            getViewState().showMessage(e);
+        }
+        return jsonObject.toString();
     }
 }

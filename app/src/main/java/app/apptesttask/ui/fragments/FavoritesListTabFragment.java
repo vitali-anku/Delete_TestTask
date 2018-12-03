@@ -79,6 +79,7 @@ public class FavoritesListTabFragment extends MvpAppCompatFragment implements Fa
     public void onRefresh() {
         clearList();
         favoritesListPresenter.refreshCalled();
+        favoritesListPresenter.writeFile(getView());
     }
 
     @Override

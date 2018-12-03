@@ -45,8 +45,9 @@ public class HeroesListTabFragment extends MvpAppCompatFragment implements Heroe
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        return inflater.inflate(R.layout.fragment_heroes_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_heroes_list, container, false);
+        heroesListPresenter.readFile(view);
+        return view;
     }
 
     @Override

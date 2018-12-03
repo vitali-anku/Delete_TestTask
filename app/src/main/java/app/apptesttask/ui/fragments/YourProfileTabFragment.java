@@ -83,6 +83,8 @@ public class YourProfileTabFragment extends MvpAppCompatFragment implements Your
     }
 
     private void initSwipeRefreshLayout() {
+        //onRefresh();
+        favoritesListPresenter.writeFile(getView());
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
                 android.R.color.holo_green_dark,

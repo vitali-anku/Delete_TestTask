@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -17,14 +16,9 @@ import java.util.List;
 import app.apptesttask.R;
 import app.apptesttask.mvp.models.LocalData;
 import app.apptesttask.mvp.models.heroes.Character;
-import app.apptesttask.mvp.presenter.HeroesListAdapterPresenter;
-import app.apptesttask.mvp.view.HeroesListsView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class RecyclerHeroesListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements HeroesListsView {
-
-    @InjectPresenter
-    HeroesListAdapterPresenter heroesListAdapterPresenter;
+public class RecyclerHeroesListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private boolean visibleBtnStar;
 
@@ -58,11 +52,6 @@ public class RecyclerHeroesListAdapter extends RecyclerView.Adapter<RecyclerView
     public void clearItemList() {
         mHeroesList.clear();
         notifyDataSetChanged();
-    }
-
-    @Override
-    public void updateLikes(List<Integer> inProgress, List<Integer> likesId) {
-
     }
 
     class HeroesViewHolder extends RecyclerView.ViewHolder {
