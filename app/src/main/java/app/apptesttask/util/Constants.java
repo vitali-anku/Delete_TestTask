@@ -11,10 +11,7 @@ public class Constants {
     public final static String PUBLIC_KEY = "5502dd19b20bb1840f20fcfad2a2dfcb";
     public final static int TS = 50;
 
-    public final static String NULL_FIELD = "Empty";
-
-    public final static int REQUEST_CODE = 1;
-    public static final int PAGE_SIZE = 50;
+    public final static String FILENAME = "varvel.json";
 
     public static String hashTomd5() throws NoSuchAlgorithmException {
 

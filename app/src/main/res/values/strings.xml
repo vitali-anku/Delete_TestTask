@@ -5,6 +5,6 @@
     <string name="error_field_required">This field is required</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="heroes_list_tab">Heroes</string>
-    <string name="favorites_list_tab">Fovorites</string>
+    <string name="favorites_list_tab">Favorites</string>
     <string name="your_profile_tab">Your Profile</string>
 </resources>

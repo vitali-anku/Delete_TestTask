@@ -25,10 +25,22 @@ public class HeroesListTabFragmentPresenter extends BasePresenter<HeroesListTabF
         MyApplication.getAppComponent().inject(this);
     }
 
+//    @Override
+//    public void attachView(HeroesListTabFragmentView view) {
+//        super.attachView(view);
+//        loadHeroesList();
+//    }
+
     @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
         loadHeroesList();
+    }
+
+    @Override
+    public void detachView(HeroesListTabFragmentView view) {
+        super.detachView(view);
+        getViewState().clearList();
     }
 
     private void loadHeroesList() {

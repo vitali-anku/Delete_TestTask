@@ -77,7 +77,7 @@ public class RecyclerHeroesListAdapter extends RecyclerView.Adapter<RecyclerView
             avatarImageView = itemView.findViewById(R.id.id_hero);
             nameHeroView = itemView.findViewById(R.id.name_hero);
             descriptionHeroView = itemView.findViewById(R.id.description_hero);
-            imageButton = itemView.findViewById(R.id.favorites_id);
+            imageButton = itemView.findViewById(R.id.btn_add_favoriet);
         }
 
         void bind(final Character character, boolean visibleBtnStar) {
@@ -102,7 +102,7 @@ public class RecyclerHeroesListAdapter extends RecyclerView.Adapter<RecyclerView
         }
 
         private void paintButton(int id){
-            boolean status = LocalData.mInProgress.contains(id);
+            boolean status = LocalData.mLikesId.contains(id);
             if(status) imageButton.setBackgroundResource(R.drawable.ic_star_open);
             else imageButton.setBackgroundResource(R.drawable.ic_star_close);
         }

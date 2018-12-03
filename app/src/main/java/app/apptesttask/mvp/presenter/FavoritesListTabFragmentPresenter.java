@@ -1,6 +1,12 @@
 package app.apptesttask.mvp.presenter;
 
+import android.view.View;
+
 import com.arellomobile.mvp.InjectViewState;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +25,8 @@ import io.reactivex.schedulers.Schedulers;
 @InjectViewState
 public class FavoritesListTabFragmentPresenter extends BasePresenter<FavoritesListTabFragmentView> {
 
+    private final static String LIKES_ID = "likes_id";
+
     @Inject
     MarvelService marvelService;
 
@@ -27,10 +35,23 @@ public class FavoritesListTabFragmentPresenter extends BasePresenter<FavoritesLi
     }
 
     @Override
-    protected void onFirstViewAttach() {
-        super.onFirstViewAttach();
+    public void attachView(FavoritesListTabFragmentView view) {
+        super.attachView(view);
+        getViewState().clearList();
         loadFavoritesList();
     }
+
+    @Override
+    public void detachView(FavoritesListTabFragmentView view) {
+        super.detachView(view);
+        getViewState().clearList();
+    }
+
+//    @Override
+//    protected void onFirstViewAttach() {
+//        super.onFirstViewAttach();
+//        loadFavoritesList();
+//    }
 
     private void loadFavoritesList(){
         unsubscribeOnDestroy(marvelService.getHeroesList(String.valueOf(Constants.TS), Constants.PUBLIC_KEY, Constants.HASH)
@@ -62,6 +83,59 @@ public class FavoritesListTabFragmentPresenter extends BasePresenter<FavoritesLi
         }
         return charactersList;
     }
+
+    private boolean chekJsonFile(){
+
+
+
+        return false;
+    }
+
+    private void openFile(View view){
+
+    }
+
+    public String writeFile(){
+        return null;
+    }
+
+    private void readFile(){
+    }
+
+    public List<Integer> convertToClass(JSONObject jsonObject) {
+
+        List<Integer> integers = new ArrayList<>();
+
+        try {
+            //String teacherFromJson = schoolClassFromJson.getString("teacher");
+
+            JSONArray jsonArray = jsonObject.getJSONArray(LIKES_ID);
+
+            for (int i = 0; i<jsonArray.length(); i++){
+                integers.add(jsonArray.getInt(i));
+                LocalData.mLikesId.add(jsonArray.getInt(i));
+            }
+        } catch (JSONException e) {
+            getViewState().showMessage(e);
+        }
+        return integers;
+    }
+
+    public JSONObject convertToJson(){
+        JSONObject jsonObject = new JSONObject();
+        JSONArray jsonArray = new JSONArray();
+
+        try{
+
+            for (int i: LocalData.mLikesId) {
+                jsonArray.put(i);
+            }
+
+            jsonObject.put(LIKES_ID, jsonArray);
+        } catch (JSONException ignored){}
+        return jsonObject;
+    }
+
 
     private void hideProgress(){
         getViewState().hideProgress();
