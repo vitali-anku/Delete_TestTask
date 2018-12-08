@@ -17,13 +17,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        style="@style/Widget.Design.TabLayout"
+        android:background="@color/colorPrimary"
 
         android:fillViewport="true"
         app:tabGravity="fill"
         app:tabIndicatorColor="@color/tab_color"
         app:tabMode="fixed"
-        app:tabSelectedTextColor="@color/tab_selected_color"
-        app:tabTextColor="@color/tab_color"
         android:hapticFeedbackEnabled="true"
         />
 

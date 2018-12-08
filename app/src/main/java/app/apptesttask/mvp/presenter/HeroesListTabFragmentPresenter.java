@@ -11,7 +11,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -35,29 +34,17 @@ public class HeroesListTabFragmentPresenter extends BasePresenter<HeroesListTabF
     @Inject
     MarvelService marvelService;
 
-    boolean isCompl = true;
+    private boolean isCompl = true;
 
     public HeroesListTabFragmentPresenter() {
         MyApplication.getAppComponent().inject(this);
     }
-
-//    @Override
-//    public void attachView(HeroesListTabFragmentView view) {
-//        super.attachView(view);
-//        loadHeroesList();
-//    }
 
     @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
         loadHeroesList();
     }
-
-//    @Override
-//    public void detachView(HeroesListTabFragmentView view) {
-//        super.detachView(view);
-//        getViewState().clearList();
-//    }
 
     public void readFile(View view){
         if(!isCompl){
@@ -83,40 +70,19 @@ public class HeroesListTabFragmentPresenter extends BasePresenter<HeroesListTabF
                 inputStream.close();
                 ret = stringBuilder.toString();
             }
-        }
-        catch (FileNotFoundException e) {
-            Log.e("login activity", "File not found: " + e.toString());
         } catch (IOException e) {
-            Log.e("login activity", "Can not read file: " + e.toString());
+            onLoadingFailed(e);
         }
 
         convertToClass(ret);
 
         isCompl = false;
-//        try {
-//            // открываем поток для чтения
-//            BufferedReader br = new BufferedReader(new InputStreamReader(
-//                    context.openFileInput(Constants.FILENAME)));
-//            String str = "";
-//            // читаем содержимое
-//            while ((str = br.readLine()) != null) {
-//                Log.d("myLogsRead: ", str);
-//            }
-////            str = br.readLine();
-//
-//            Log.d("myLogsRead: ", str);
-////            convertToClass(str);
-//
-//        } catch (IOException e) {
-//            onLoadingFailed(e);
-//        }
     }
 
     private void convertToClass(String str) {
 
         try{
             JSONObject jsonObject = new JSONObject(str);
-            //JSONArray json = new JSONArray(str);
 
             Log.d(Constants.LIKES_ID, "Favorites");
 

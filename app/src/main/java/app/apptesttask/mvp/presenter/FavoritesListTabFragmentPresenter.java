@@ -19,7 +19,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import app.apptesttask.app.MarvelService;
-import app.apptesttask.application.MyApplication;
 import app.apptesttask.mvp.models.LocalData;
 import app.apptesttask.mvp.models.heroes.Character;
 import app.apptesttask.mvp.view.FavoritesListTabFragmentView;
@@ -30,11 +29,11 @@ import io.reactivex.schedulers.Schedulers;
 @InjectViewState
 public class FavoritesListTabFragmentPresenter extends BasePresenter<FavoritesListTabFragmentView> {
 
-    @Inject
-    MarvelService marvelService;
+    private final MarvelService marvelService;
 
-    public FavoritesListTabFragmentPresenter() {
-        MyApplication.getAppComponent().inject(this);
+    @Inject
+    public FavoritesListTabFragmentPresenter(MarvelService marvelService) {
+        this.marvelService = marvelService;
     }
 
     @Override
@@ -92,16 +91,6 @@ public class FavoritesListTabFragmentPresenter extends BasePresenter<FavoritesLi
 
     public void refreshCalled(){
         loadFavoritesList();
-    }
-
-    private boolean chekJsonFile(){
-
-
-
-        return false;
-    }
-
-    private void openFile(View view){
     }
 
     public void writeFile(View view){
