@@ -7,9 +7,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import app.apptesttask.R;
 import app.apptesttask.app.MarvelService;
 import app.apptesttask.mvp.models.heroes.Character;
 import app.apptesttask.mvp.view.HeroesListTabFragmentView;
+import app.apptesttask.mvp.view.ListAdapterView;
 import app.apptesttask.util.Constants;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -18,6 +20,8 @@ import io.reactivex.schedulers.Schedulers;
 public class HeroesListTabFragmentPresenter extends BasePresenter<HeroesListTabFragmentView> {
 
     MarvelService marvelService;
+
+    private List<Character> characterList = new ArrayList<>();
 
     @Inject
     public HeroesListTabFragmentPresenter(MarvelService marvelService) {
@@ -28,6 +32,16 @@ public class HeroesListTabFragmentPresenter extends BasePresenter<HeroesListTabF
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
         loadHeroesList();
+    }
+
+    public void onBindRepositoryRowViewAtPosition(int position, ListAdapterView view) {
+        Character character = characterList.get(position);
+        view.setData(character.getThumbnail().toString(), character.getName(), character.getDescription());
+        view.setStar(R.drawable.ic_star_close);
+    }
+
+    public int getCount() {
+        return characterList.size();
     }
 
     @Override
@@ -42,8 +56,7 @@ public class HeroesListTabFragmentPresenter extends BasePresenter<HeroesListTabF
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(disposable -> showProgress())
                 .subscribe(characterDataWrapper -> {
-                            List<Character> characters = new ArrayList<>(characterDataWrapper.getData().getResults());
-                            onLoading(characters);
+                            characterList.addAll(characterDataWrapper.getData().getResults());
                             hideProgress();
                         },
                         error -> {
@@ -53,19 +66,19 @@ public class HeroesListTabFragmentPresenter extends BasePresenter<HeroesListTabF
         );
     }
 
-    private void onLoading(List<Character> characters){
-          getViewState().showHeroesList(characters);
+    private void onLoading() {
+        getViewState().showHeroesList(characterList);
     }
 
-    private void hideProgress(){
+    private void hideProgress() {
         getViewState().hideProgress();
     }
 
-    private void onLoadingFailed(Throwable error){
+    private void onLoadingFailed(Throwable error) {
         getViewState().showError(error.toString());
     }
 
-    private void showProgress(){
+    private void showProgress() {
         getViewState().showProgress();
     }
 

@@ -23,11 +23,13 @@ import javax.inject.Inject;
 import javax.inject.Provider;
 
 import app.apptesttask.R;
+import app.apptesttask.app.MarvelService;
 import app.apptesttask.application.MyApplication;
 import app.apptesttask.mvp.models.heroes.Character;
 import app.apptesttask.mvp.presenter.HeroesListTabFragmentPresenter;
 import app.apptesttask.mvp.view.HeroesListTabFragmentView;
-import app.apptesttask.ui.adapters.RecyclerHeroesListAdapter;
+import app.apptesttask.mvp.view.ListAdapterView;
+import app.apptesttask.ui.adapters.HeroesListAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -40,12 +42,13 @@ public class HeroesListTabFragment extends MvpAppCompatFragment implements Heroe
     HeroesListTabFragmentPresenter heroesListPresenter;
 
     @Inject
-    Provider<HeroesListTabFragmentPresenter> provider;
+    MarvelService marvelService;
 
     @ProvidePresenter
     HeroesListTabFragmentPresenter provideHeroesListTabFragmentPresenter() {
-        return provider.get();
+        return new HeroesListTabFragmentPresenter(marvelService);
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,12 +62,12 @@ public class HeroesListTabFragment extends MvpAppCompatFragment implements Heroe
     @BindView(R.id.recycler_heroes_list)
     RecyclerView mRecycler;
 
-    private RecyclerHeroesListAdapter mAdapter;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_heroes_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_heroes_list, container, false);
+
+        return view;
     }
 
     @Override
@@ -73,7 +76,11 @@ public class HeroesListTabFragment extends MvpAppCompatFragment implements Heroe
 
         ButterKnife.bind(this, view);
 
-        initRecycler();
+        HeroesListAdapter mAdapter = new HeroesListAdapter(heroesListPresenter);
+        mAdapter.notifyDataSetChanged();
+        mRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecycler.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getContext()), VERTICAL));
+        mRecycler.setAdapter(mAdapter);
         initSwipeRefreshLayout();
     }
 
@@ -90,18 +97,9 @@ public class HeroesListTabFragment extends MvpAppCompatFragment implements Heroe
                 android.R.color.holo_blue_dark);
     }
 
-    private void initRecycler() {
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
-        DividerItemDecoration itemDecoration = new DividerItemDecoration(Objects.requireNonNull(getContext()), VERTICAL);
-        mAdapter = new RecyclerHeroesListAdapter();
-        mRecycler.setLayoutManager(mLayoutManager);
-        mRecycler.setAdapter(mAdapter);
-        mRecycler.addItemDecoration(itemDecoration);
-    }
-
     @Override
     public void showHeroesList(List<Character> characters) {
-        mAdapter.setItemsList(characters, true);
+        Toast.makeText(getContext(), characters.size(), Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -121,6 +119,6 @@ public class HeroesListTabFragment extends MvpAppCompatFragment implements Heroe
 
     @Override
     public void clearList() {
-        mAdapter.clearItemList();
+
     }
 }

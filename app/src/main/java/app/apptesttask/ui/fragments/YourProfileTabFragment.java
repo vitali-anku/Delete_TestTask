@@ -31,7 +31,7 @@ import app.apptesttask.mvp.presenter.FavoritesListTabFragmentPresenter;
 import app.apptesttask.mvp.presenter.YourProfileTabFragmentPresenter;
 import app.apptesttask.mvp.view.FavoritesListTabFragmentView;
 import app.apptesttask.mvp.view.YourProfileTabFragmentView;
-import app.apptesttask.ui.adapters.RecyclerHeroesListAdapter;
+import app.apptesttask.ui.adapters.HeroesListAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -50,7 +50,7 @@ public class YourProfileTabFragment extends MvpAppCompatFragment implements Your
     Provider<FavoritesListTabFragmentPresenter> provider2;
 
     @ProvidePresenter
-    FavoritesListTabFragmentPresenter favoritesListTabFragmentPresenter(){
+    FavoritesListTabFragmentPresenter favoritesListTabFragmentPresenter() {
         return provider2.get();
     }
 
@@ -73,7 +73,7 @@ public class YourProfileTabFragment extends MvpAppCompatFragment implements Your
     @BindView(R.id.my_favorites_swipe_refresh)
     SwipeRefreshLayout swipeRefreshLayout;
 
-    private RecyclerHeroesListAdapter mAdapter;
+    private HeroesListAdapter mAdapter;
 
     @Nullable
     @Override
@@ -94,7 +94,7 @@ public class YourProfileTabFragment extends MvpAppCompatFragment implements Your
     private void initRecycler() {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         DividerItemDecoration itemDecoration = new DividerItemDecoration(Objects.requireNonNull(getContext()), VERTICAL);
-        mAdapter = new RecyclerHeroesListAdapter();
+//        mAdapter = new HeroesListAdapter();
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(mAdapter);
         recyclerView.addItemDecoration(itemDecoration);
@@ -136,7 +136,7 @@ public class YourProfileTabFragment extends MvpAppCompatFragment implements Your
 
     @Override
     public void showFavoritesList(List<Character> heroes) {
-        mAdapter.setItemsList(heroes, false);
+//        mAdapter.setItemsList(heroes, false);
     }
 
     @Override
@@ -146,6 +146,6 @@ public class YourProfileTabFragment extends MvpAppCompatFragment implements Your
 
     @Override
     public void clearList() {
-        mAdapter.clearItemList();
+//        mAdapter.clearItemList();
     }
 }

@@ -16,13 +16,13 @@ public class MyApplication extends Application {
         buildAppComponent();
     }
 
-    private void buildAppComponent(){
+    private void buildAppComponent() {
         appComponent = DaggerAppComponent.builder()
                 .contextModule(new ContextModule(this))
                 .build();
     }
 
-    public static AppComponent getAppComponent(){
+    public static AppComponent getAppComponent() {
         return appComponent;
     }
 }

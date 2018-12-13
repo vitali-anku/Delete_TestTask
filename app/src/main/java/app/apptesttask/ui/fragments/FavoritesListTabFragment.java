@@ -27,7 +27,7 @@ import app.apptesttask.application.MyApplication;
 import app.apptesttask.mvp.models.heroes.Character;
 import app.apptesttask.mvp.presenter.FavoritesListTabFragmentPresenter;
 import app.apptesttask.mvp.view.FavoritesListTabFragmentView;
-import app.apptesttask.ui.adapters.RecyclerHeroesListAdapter;
+import app.apptesttask.ui.adapters.HeroesListAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -42,7 +42,7 @@ public class FavoritesListTabFragment extends MvpAppCompatFragment implements Fa
     @BindView(R.id.recycler_heroes_list)
     RecyclerView mRecycler;
 
-    private RecyclerHeroesListAdapter mAdapter;
+    private HeroesListAdapter mAdapter;
 
     @InjectPresenter
     FavoritesListTabFragmentPresenter favoritesListPresenter;
@@ -80,7 +80,7 @@ public class FavoritesListTabFragment extends MvpAppCompatFragment implements Fa
     private void initRecycler() {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         DividerItemDecoration itemDecoration = new DividerItemDecoration(Objects.requireNonNull(getContext()), VERTICAL);
-        mAdapter = new RecyclerHeroesListAdapter();
+//        mAdapter = new HeroesListAdapter();
         mRecycler.setLayoutManager(mLayoutManager);
         mRecycler.setAdapter(mAdapter);
         mRecycler.addItemDecoration(itemDecoration);
@@ -117,11 +117,11 @@ public class FavoritesListTabFragment extends MvpAppCompatFragment implements Fa
 
     @Override
     public void showFavoritesList(List<Character> heroes) {
-        mAdapter.setItemsList(heroes, false);
+        //mAdapter.setItemsList(heroes, false);
     }
 
     @Override
     public void clearList() {
-        mAdapter.clearItemList();
+        //mAdapter.clearItemList();
     }
 }
