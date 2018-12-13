@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+
 import app.apptesttask.application.MyApplication;
 import app.apptesttask.mvp.view.HeroesListsView;
 import io.reactivex.Observable;
@@ -20,9 +22,8 @@ public class HeroesListAdapterPresenter extends BasePresenter<HeroesListsView> {
     private List<Integer> mInProgress = new ArrayList<>();
     private List<Integer> mLikesId = new ArrayList<>();
 
-    public HeroesListAdapterPresenter() {
-        MyApplication.getAppComponent().inject(this);
-    }
+    @Inject
+    public HeroesListAdapterPresenter() {}
 
     public void toggleLike(int id) {
         if (mInProgress.contains(id)) {

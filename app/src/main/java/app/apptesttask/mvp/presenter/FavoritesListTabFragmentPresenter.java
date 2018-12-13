@@ -14,7 +14,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import app.apptesttask.app.MarvelService;
-import app.apptesttask.application.MyApplication;
 import app.apptesttask.mvp.models.LocalData;
 import app.apptesttask.mvp.models.heroes.Character;
 import app.apptesttask.mvp.view.FavoritesListTabFragmentView;
@@ -27,11 +26,11 @@ public class FavoritesListTabFragmentPresenter extends BasePresenter<FavoritesLi
 
     private final static String LIKES_ID = "likes_id";
 
-    @Inject
     MarvelService marvelService;
 
-    public FavoritesListTabFragmentPresenter() {
-        MyApplication.getAppComponent().inject(this);
+    @Inject
+    public FavoritesListTabFragmentPresenter(MarvelService marvelService) {
+        this.marvelService = marvelService;
     }
 
     @Override

@@ -8,7 +8,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import app.apptesttask.app.MarvelService;
-import app.apptesttask.application.MyApplication;
 import app.apptesttask.mvp.models.heroes.Character;
 import app.apptesttask.mvp.view.HeroesListTabFragmentView;
 import app.apptesttask.util.Constants;
@@ -18,18 +17,12 @@ import io.reactivex.schedulers.Schedulers;
 @InjectViewState
 public class HeroesListTabFragmentPresenter extends BasePresenter<HeroesListTabFragmentView> {
 
-    @Inject
     MarvelService marvelService;
 
-    public HeroesListTabFragmentPresenter() {
-        MyApplication.getAppComponent().inject(this);
+    @Inject
+    public HeroesListTabFragmentPresenter(MarvelService marvelService) {
+        this.marvelService = marvelService;
     }
-
-//    @Override
-//    public void attachView(HeroesListTabFragmentView view) {
-//        super.attachView(view);
-//        loadHeroesList();
-//    }
 
     @Override
     protected void onFirstViewAttach() {

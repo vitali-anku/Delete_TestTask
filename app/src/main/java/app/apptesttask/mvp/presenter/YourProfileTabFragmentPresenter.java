@@ -2,15 +2,16 @@ package app.apptesttask.mvp.presenter;
 
 import com.arellomobile.mvp.InjectViewState;
 
+import javax.inject.Inject;
+
 import app.apptesttask.application.MyApplication;
 import app.apptesttask.mvp.view.YourProfileTabFragmentView;
 
 @InjectViewState
 public class YourProfileTabFragmentPresenter extends BasePresenter<YourProfileTabFragmentView> {
 
-    public YourProfileTabFragmentPresenter() {
-        MyApplication.getAppComponent().inject(this);
-    }
+    @Inject
+    public YourProfileTabFragmentPresenter() {}
 
     @Override
     protected void onFirstViewAttach() {

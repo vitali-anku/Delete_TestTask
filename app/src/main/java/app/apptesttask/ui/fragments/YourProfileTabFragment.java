@@ -15,12 +15,17 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
 import java.util.Objects;
 
+import javax.inject.Inject;
+import javax.inject.Provider;
+
 import app.apptesttask.R;
+import app.apptesttask.application.MyApplication;
 import app.apptesttask.mvp.models.heroes.Character;
 import app.apptesttask.mvp.presenter.FavoritesListTabFragmentPresenter;
 import app.apptesttask.mvp.presenter.YourProfileTabFragmentPresenter;
@@ -41,6 +46,19 @@ public class YourProfileTabFragment extends MvpAppCompatFragment implements Your
 
     @InjectPresenter
     FavoritesListTabFragmentPresenter favoritesListPresenter;
+    @Inject
+    Provider<FavoritesListTabFragmentPresenter> provider2;
+
+    @ProvidePresenter
+    FavoritesListTabFragmentPresenter favoritesListTabFragmentPresenter(){
+        return provider2.get();
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        MyApplication.getAppComponent().inject(this);
+        super.onCreate(savedInstanceState);
+    }
 
     @BindView(R.id.avatar_image)
     CircleImageView circleImageView;

@@ -8,7 +8,4 @@ import app.apptesttask.mvp.view.MainActivityView;
 
 @InjectViewState
 public class MainActivityPresenter extends MvpPresenter<MainActivityView> {
-    public MainActivityPresenter() {
-        MyApplication.getAppComponent().inject(this);
-    }
 }

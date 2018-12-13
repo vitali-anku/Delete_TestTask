@@ -1,31 +1,26 @@
 package app.apptesttask.di;
 
-import android.content.Context;
-
 import javax.inject.Singleton;
 
 import app.apptesttask.di.modules.ContextModule;
 import app.apptesttask.di.modules.MarvelModule;
-import app.apptesttask.di.modules.ModelModule;
 import app.apptesttask.mvp.presenter.FavoritesListTabFragmentPresenter;
-import app.apptesttask.mvp.presenter.HeroesListAdapterPresenter;
-import app.apptesttask.mvp.presenter.HeroesListTabFragmentPresenter;
-import app.apptesttask.mvp.presenter.MainActivityPresenter;
-import app.apptesttask.mvp.presenter.YourProfileTabFragmentPresenter;
+import app.apptesttask.ui.fragments.FavoritesListTabFragment;
+import app.apptesttask.ui.fragments.HeroesListTabFragment;
+import app.apptesttask.ui.fragments.YourProfileTabFragment;
 import dagger.Component;
 
 @Singleton
-@Component(modules = {ContextModule.class, MarvelModule.class, ModelModule.class})
+@Component(modules = {ContextModule.class, MarvelModule.class})
 public interface AppComponent {
-    Context getContext();
 
-    void inject(HeroesListAdapterPresenter heroesListAdapterPresenter);
+    FavoritesListTabFragmentPresenter getFavoritesListTabFragmentPresenter();
 
-    void inject(HeroesListTabFragmentPresenter heroesListTabFragmentPresenter);
+    FavoritesListTabFragmentPresenter getPresenter();
 
-    void inject(YourProfileTabFragmentPresenter yourProfileTabFragmentPresenter);
+    void inject(FavoritesListTabFragment favoritesListTabFragment);
 
-    void inject(MainActivityPresenter mainActivityPresenter);
+    void inject(HeroesListTabFragment heroesListTabFragment);
 
-    void inject(FavoritesListTabFragmentPresenter favoritesListTabFragmentPresenter);
+    void inject(YourProfileTabFragment yourProfileTabFragment);
 }

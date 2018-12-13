@@ -14,11 +14,16 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 
 import java.util.List;
 import java.util.Objects;
 
+import javax.inject.Inject;
+import javax.inject.Provider;
+
 import app.apptesttask.R;
+import app.apptesttask.application.MyApplication;
 import app.apptesttask.mvp.models.heroes.Character;
 import app.apptesttask.mvp.presenter.HeroesListTabFragmentPresenter;
 import app.apptesttask.mvp.view.HeroesListTabFragmentView;
@@ -34,6 +39,20 @@ public class HeroesListTabFragment extends MvpAppCompatFragment implements Heroe
     @InjectPresenter
     HeroesListTabFragmentPresenter heroesListPresenter;
 
+    @Inject
+    Provider<HeroesListTabFragmentPresenter> provider;
+
+    @ProvidePresenter
+    HeroesListTabFragmentPresenter provideHeroesListTabFragmentPresenter() {
+        return provider.get();
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        MyApplication.getAppComponent().inject(this);
+        super.onCreate(savedInstanceState);
+    }
+
     @BindView(R.id.swipe_refresh_layout)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
@@ -45,7 +64,6 @@ public class HeroesListTabFragment extends MvpAppCompatFragment implements Heroe
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         return inflater.inflate(R.layout.fragment_heroes_list, container, false);
     }
 
@@ -60,7 +78,7 @@ public class HeroesListTabFragment extends MvpAppCompatFragment implements Heroe
     }
 
     @Override
-    public void onRefresh(){
+    public void onRefresh() {
         heroesListPresenter.refreshCalled();
     }
 
